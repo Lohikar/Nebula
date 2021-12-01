@@ -183,9 +183,15 @@
 	levelupdate()
 	. = ..()
 
-/turf/simulated/initialize_ambient_light(var/mapload)
-	for(var/turf/T AS_ANYTHING in RANGE_TURFS(src, 1))
-		T.update_ambient_lighting(mapload)
+/turf/simulated/refresh_ambient_light()
+	for(var/turf/space/S in RANGE_TURFS(src, 1))
+		S.refresh_ambient_light()
+	if(config.starlight && is_outside())
+		var/area/A = get_area(src)
+		if(A.show_starlight)
+			set_ambient_light(SSskybox.background_color, config.starlight)
+			return
+	..()
 
 /turf/simulated/Destroy()
 	if (zone)

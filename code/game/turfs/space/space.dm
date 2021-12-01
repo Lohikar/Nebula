@@ -15,18 +15,18 @@
 	/// Force this one to pretend it's an overedge turf.
 	var/forced_dirs = 0
 
-/turf/space/update_ambient_lighting(var/mapload)
+/turf/space/refresh_ambient_light()
 	if(config.starlight && (locate(/turf/simulated) in RANGE_TURFS(src, 1)))
-		set_light(config.starlight, 0.75, l_color = SSskybox.background_color)
+		set_ambient_light(SSskybox.background_color, config.starlight)
 	else
-		set_light(0)
+		set_ambient_light()
 
 /turf/space/Initialize(var/mapload)
 
 	SHOULD_CALL_PARENT(FALSE)
 	atom_flags |= ATOM_FLAG_INITIALIZED
 
-	update_ambient_lighting(mapload)
+	refresh_ambient_light()
 
 	//We might be an edge
 	if(y == world.maxy || forced_dirs & NORTH)

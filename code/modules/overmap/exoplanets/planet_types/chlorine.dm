@@ -24,7 +24,7 @@
 
 /obj/effect/overmap/visitable/sector/exoplanet/chlorine/generate_map()
 	if(prob(50))
-		lightlevel = rand(7,10)/10 //It could be night.
+		lightlevel = rand(0.5, 0.8) //It could be night.
 	else
 		lightlevel = 0.1
 	..()

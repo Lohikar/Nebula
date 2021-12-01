@@ -11,10 +11,21 @@
 	var/tmp/list/datum/lighting_corner/corners
 	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 
+/turf/proc/set_ambient_light(var/new_ambient_light, var/new_ambient_multiplier)
+	if(ambient_light != new_ambient_light)
+		ambient_light = new_ambient_light
+		. = TRUE
+	if(ambient_light_multiplier != new_ambient_multiplier)
+		ambient_light_multiplier = new_ambient_multiplier
+		. = TRUE
+	if(.)
+		update_ambient_light()
+
+/turf/proc/refresh_ambient_light()
+	SHOULD_CALL_PARENT(TRUE)
+	set_ambient_light(ambient_light, ambient_light_multiplier)
+
 /turf/proc/update_ambient_light(skip_update = FALSE)
-	// No, you're not allowed to light up space.
-	if (!TURF_IS_DYNAMICALLY_LIT_UNSAFE(src))
-		return
 
 	var/ambient_r = 0
 	var/ambient_g = 0

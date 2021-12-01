@@ -362,7 +362,7 @@ EVENT_CUSTOM_START_MAJOR 80;100
 ## Respawn delay in minutes before one may respawn as a crew member.
 #RESPAWN_DELAY 30
 
-## Strength of ambient star light. Set to 0 or less to turn off. A value of 1 is unlikely to have a noticeable effect in most lighting systems.
+## Strength of ambient star light. Set to 0 or less to turn off. A value of 1 is full brightness, 0.5 or so looks nice.
 STARLIGHT 0
 
 ## Defines how Law Zero is phrased. Primarily used in the Malfunction gamemode.

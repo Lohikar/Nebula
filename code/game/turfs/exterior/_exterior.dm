@@ -25,7 +25,7 @@
 		owner = null
 	else
 		//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
-		set_light(owner.lightlevel)
+		set_ambient_light(owner.lightcolor, owner.lightlevel)
 		if(owner.planetary_area && istype(loc, world.area))
 			ChangeArea(src, owner.planetary_area)
 
@@ -52,22 +52,18 @@
 		ext.affecting_heat_sources = last_affecting_heat_sources
 	return ext
 
-/turf/exterior/initialize_ambient_light(var/mapload)
-	update_ambient_lighting(mapload)
-
-/turf/exterior/update_ambient_lighting(var/mapload)
+/turf/exterior/refresh_ambient_light()
 	if(is_outside())
 		if(owner) // Exoplanets do their own lighting shenanigans.
 			//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
-			set_light(owner.lightlevel)
+			set_ambient_light(owner.lightcolor, owner.lightlevel)
 			return
 		if(config.starlight)
 			var/area/A = get_area(src)
 			if(A.show_starlight)
-				set_light(config.starlight, 0.75, l_color = SSskybox.background_color)
+				set_ambient_light(SSskybox.background_color, config.starlight)
 				return
-	if(!mapload)
-		set_light(0)
+	..()
 
 /turf/exterior/is_plating()
 	return !density

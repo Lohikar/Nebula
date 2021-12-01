@@ -739,7 +739,7 @@ var/global/list/gamemode_cache = list()
 
 				if("starlight")
 					value = text2num(value)
-					config.starlight = value >= 0 ? value : 0
+					config.starlight = Clamp(value, 0, 1)
 
 				if("law_zero")
 					law_zero = value

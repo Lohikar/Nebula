@@ -19,7 +19,7 @@
 	spawn_weight = 10	// meat
 
 /obj/effect/overmap/visitable/sector/exoplanet/meat/generate_map()
-	lightlevel = rand(1,7)/10
+	lightlevel = rand(0.5, 0.8)
 	..()
 
 /obj/effect/overmap/visitable/sector/exoplanet/meat/get_target_temperature()

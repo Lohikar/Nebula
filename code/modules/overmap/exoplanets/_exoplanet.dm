@@ -6,6 +6,7 @@
 	free_landing = TRUE
 	var/area/planetary_area
 
+	var/lightcolor = COLOR_WHITE
 	var/lightlevel = 0 		//This default makes turfs not generate light. Adjust to have exoplanents be lit.
 	var/night = TRUE
 	var/daycycle 			//How often do we change day and night
@@ -174,7 +175,7 @@
 	if(!night)
 		light = lightlevel
 	for(var/turf/exterior/T in block(locate(daycolumn,1,min(map_z)),locate(daycolumn,maxy,max(map_z))))
-		T.set_light(light)
+		T.set_ambient_light(lightcolor, light)
 	daycolumn++
 	if(daycolumn > maxx)
 		daycolumn = 0
