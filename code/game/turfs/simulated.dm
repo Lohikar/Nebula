@@ -185,7 +185,7 @@
 
 /turf/simulated/initialize_ambient_light(var/mapload)
 	for(var/turf/T AS_ANYTHING in RANGE_TURFS(src, 1))
-		T.update_ambient_light(mapload)
+		T.update_ambient_lighting(mapload)
 
 /turf/simulated/Destroy()
 	if (zone)
